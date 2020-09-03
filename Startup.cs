@@ -28,7 +28,7 @@ namespace RegFormApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RegFormApiDbContext>(options => options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; database=regformapi; Trusted_Connection=True;"));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

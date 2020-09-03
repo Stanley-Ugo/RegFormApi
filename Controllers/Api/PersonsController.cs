@@ -8,7 +8,7 @@ using RegFormApi.Model;
 
 namespace RegFormApi.Controllers.Api
 {
-    [Route("api/[persons]")]
+    [Route("api/persons")]
     [ApiController]
     public class PersonsController : Controller
     {
@@ -20,7 +20,7 @@ namespace RegFormApi.Controllers.Api
         }
 
         [HttpGet]
-        public IActionResult GetPersons()
+        public IActionResult Get()
         {
             var personDb = context.Persons.ToList();
 
@@ -28,7 +28,7 @@ namespace RegFormApi.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult CreatePerson(Person person)
+        public IActionResult Create(Person person)
         {
             context.Add(person);
             context.SaveChanges();
