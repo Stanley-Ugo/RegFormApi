@@ -28,12 +28,24 @@ namespace RegFormApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RegFormApiDbContext>(options => options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; database=regformapi; Trusted_Connection=True;"));
+
+            services.AddCors
+                (c =>
+                c.AddPolicy(
+                    "AllowOrigin",
+                    options =>
+                        options.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()));
+
             services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
